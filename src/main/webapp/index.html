@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="css/indexStyle.css">
+<meta charset="UTF-8">
+<title>Welcome page</title>
+</head>
+<body>
+	<div class="container">
+		<div class="login">
+			<h3>login</h3>
+			<form action="CheckLogin" method="POST">
+			User Name: <input type="text" name="username" required> <br>
+			Password: <input type="password" name="password" required><br>
+			<input type="submit" value="Login">
+			<p style="color:red;" th:text=" ${loginErrorMsg}"></p>
+			</form>
+		</div>
+		<div class="registration">
+			<h3>registration</h3>
+			<form action="Registration" method="POST">
+			User Name: <input type="text" th:attr="value = ${savedUsername}" name="username" required><br>
+			Name: <input type="text" th:attr="value = ${savedName}" name="name" required><br>
+			Surname: <input type="text" th:attr="value = ${savedSurname}" name="surname" required><br>
+			Email: <input type="email" th:attr="value = ${savedEmail}" name="email" required><br>
+			Password: <input type="password" name="password" required><br>
+			Repeat password: <input type="password" name="re_password" required><br>
+			<input type="submit" value="Sign In">
+			<p style="color:green;" th:text=" ${registrationSuccessMsg}"></p>
+			<p style="color:red;" th:text=" ${registrationErrorMsg}"></p>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="css/homeStyle.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Too many errors</h2>
+<p th:text="${'Sorry, ' + session.user.name + ' ' + session.user.surname + ', three attempts to create a meeting with an exceeding number of participants, the meeting will not be created'}"></p>
+
+<a th:href="@{/Home}">Back to home</a>
+
+</body>
+</html>

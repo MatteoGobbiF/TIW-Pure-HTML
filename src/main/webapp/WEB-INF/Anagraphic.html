@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="css/homeStyle.css">
+<meta charset="UTF-8">
+<title>Users Selection</title>
+</head>
+<body>
+<h1>Select users to invite to the meeting</h1>
+<p th:text="${'You can invite up to '+(session.meeting.max-1)+' users'}"></p>
+<p style="color:red; "th:if="${session.tries}>1" th:text="${'You have selected too many users to invite to the meeting. Please deselect at least '+ session.exceedingValue + ' users'}"></p>
+<p th:text="${'This if your try number ' + session.tries + ', you have up to 3 tries'}"></p>
+<div th:if="${users.size() >0}">
+	<form action="CreateMeeting" method="post">
+		<table>
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Name</th>
+					<th>Surname</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="u : ${users}">
+					<td th:text="${u.username}"></td>
+					<td th:text="${u.name}"></td>
+					<td th:text="${u.surname}"></td>
+					<td><input type="checkbox" name="selectedUsers" th:value="${u.id}" th:checked="${!#arrays.isEmpty(session.selectedUsersArray) and #arrays.contains(session.selectedUsersArray, u.id.toString())}"/></td>
+				</tr>
+			</tbody>
+		</table>
+		<input type="submit" value="INVITE">
+	</form>
+</div>  
+<a th:href="@{/Home}">Cancel</a>
+</body>
+</html>

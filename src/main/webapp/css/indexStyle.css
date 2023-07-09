@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: auto;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+h3 {
+    text-transform: uppercase;
+    margin: 10px;
+    font-family:'barlow', sans-serif;
+}
+
+.container {
+    width: 50%;
+    height: 80vh;
+    display: grid;
+}
+
+input[type] {
+    margin: 5px;
+    border-radius: 5px ;
+}
+
+input[type=submit] {
+    width: 100px;
+    height: 25px;
+}
+
+.login, .registration {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid black;
+    margin: auto;
+}

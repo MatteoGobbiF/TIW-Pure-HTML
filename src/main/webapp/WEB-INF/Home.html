@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="css/homeStyle.css">
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+<h1>Meeting management page</h1>
+<h3 th:text="${'Nice to see you again ' + session.user.name + ' ' + session.user.surname}"></h3>
+
+<h2>NEXT MEETINGS CREATED BY YOU</h2>
+<div th:if="${createdMeetings.size() >0}">
+		<table>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Date and Time</th>
+					<th>Duration (minutes)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="m : ${createdMeetings}">
+					<td th:text="${m.title}"></td>
+					<td th:text="${ m.dateTime }"></td>
+					<td th:text="${ m.duration }"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>  
+<div th:if="${createdMeetings.size() == 0}"> There are not incoming created meetings</div>
+
+<h2>NEXT MEETINGS YOU ARE INVITED TO</h2>
+<div th:if="${invitedMeetings.size() >0}">
+		<table>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Date and Time</th>
+					<th>Duration (minutes)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="m : ${invitedMeetings}">
+					<td th:text="${m.title}"></td>
+					<td th:text="${ m.dateTime }"></td>
+					<td th:text="${ m.duration }"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>  
+<div th:if="${invitedMeetings.size() == 0}"> There are not incoming meetings you are invited to</div>
+
+<h2>CREATE A NEW MEETING</h2>
+	<form action="GoToAnagraphic" method="POST">
+		Title: <input type="text" th:attr="value = ${savedTitle}" name="title" required><br>
+		Date and time: <input type="datetime-local" th:attr="min=${minDateTime}, value=${savedDateTime}" name="dateTime" required><br> 
+		Duration (in minutes): <input type="number" th:attr="value = ${savedDuration}" name="duration" required min="1" max="1440"><br>
+		Max number of partecipants: <input type="number" name="max" required th:attr="value = ${savedMax}" min="1"><br>
+		<input type="submit" value="Create">
+		<p style="color:red;" th:text=" ${formError}"></p>
+	</form>
+<p style="color:green;" th:text=" ${meetingCreationMsg}"></p>
+<a th:href="@{/Logout}">Logout</a>
+</body>
+</html>
